@@ -5,7 +5,7 @@
 
 ![پیش‌نمایش برنامه](images/screenshot.png)
 
-![پیش‌نمایش برنامه](images/screenshot1.png)
+![پیش‌نمایش برنامه](images/Screenshot1.png)
 
 !
 
