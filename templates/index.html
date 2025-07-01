@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Menstrual Cycle Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h1>🩸 Menstrual Cycle Tracker</h1>
+
+        <form method="POST">
+            <label for="last_period_date">Last period date:</label>
+            <input type="date" id="last_period_date" name="last_period_date" required />
+
+            <label for="cycle_length">Average cycle length (days):</label>
+            <input type="number" id="cycle_length" name="cycle_length" min="20" max="45" required />
+
+            <label for="period_length">Period length (days):</label>
+            <input type="number" id="period_length" name="period_length" min="1" max="15" required />
+
+            <label for="symptoms">Symptoms (optional):</label>
+            <input type="text" id="symptoms" name="symptoms" placeholder="e.g. cramps, headache" />
+
+            <button type="submit">Track</button>
+        </form>
+
+        {% if result %}
+            <hr />
+            {% if result.error %}
+                <p class="error">{{ result.error }}</p>
+            {% else %}
+                <h3>Cycle Information</h3>
+                <p><strong>Last period date:</strong> {{ result.last_period_date }}</p>
+                <p><strong>Expected next period:</strong> {{ result.next_period }}</p>
+                <p><strong>Ovulation day (approx):</strong> day {{ result.ovulation_day }}</p>
+                <p><strong>Fertile window:</strong> {{ result.fertile_start }} to {{ result.fertile_end }}</p>
+                <p><strong>Symptoms:</strong> {{ result.symptoms or "None" }}</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
